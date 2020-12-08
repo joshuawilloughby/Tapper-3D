@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
-using UnityEditor.PackageManager.Requests;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -53,7 +49,6 @@ public class ButtonHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     {
         if (bartender.canPour)
         {
-            Debug.Log("finished pouring");
             barTap.canRemoveMug = true;
 
         }
@@ -65,7 +60,6 @@ public class ButtonHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         barTap = bartender.currentKeg.GetComponent<BarTap>();
         barTap.canPourBeer = true;
         pourBeer = true;
-        Debug.Log("pouring");
     }
 
     public void OnPointerUp(PointerEventData eventData)

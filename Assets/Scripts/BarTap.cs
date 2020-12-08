@@ -1,9 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BarTap : MonoBehaviour
 {
+    public GameObject player;
+
+    public Transform cloneHolder;
+
     public Bartender bartender;
 
     public GameObject emptyMug;
@@ -52,11 +54,16 @@ public class BarTap : MonoBehaviour
             Destroy(newEmptyBeerMug);
 
             newFullBeerMug = Instantiate(fullMug, fullMugSpawn.position, fullMugSpawn.rotation);
+            newFullBeerMug.transform.parent = cloneHolder;
             newFullBeerMugRig = newFullBeerMug.GetComponent<Rigidbody>();
 
             newFullBeerMugRig.constraints = RigidbodyConstraints.FreezeAll;
 
             fullMugSpawned = true;
+
+            Transform beerClone = cloneHolder.Find("Beer full(Clone)");
+            Transform beerHolder = player.gameObject.transform.Find("MugHolder");
+            beerClone.parent = beerHolder;
         }
     }
 }

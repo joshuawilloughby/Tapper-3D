@@ -5211,6 +5211,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be413376ce1572246be848360a6b6d8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1631423278}
+  cloneHolder: {fileID: 0}
   bartender: {fileID: 4959593123706638549}
   emptyMug: {fileID: 919132148646434588}
   fullMug: {fileID: 919132148975911526}
@@ -10908,6 +10910,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be413376ce1572246be848360a6b6d8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 4959593123706638548}
+  cloneHolder: {fileID: 2143618525}
   bartender: {fileID: 4959593123706638549}
   emptyMug: {fileID: 919132148646434588}
   fullMug: {fileID: 919132148975911526}
@@ -25190,6 +25194,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be413376ce1572246be848360a6b6d8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1631423278}
+  cloneHolder: {fileID: 0}
   bartender: {fileID: 4959593123706638549}
   emptyMug: {fileID: 919132148646434588}
   fullMug: {fileID: 919132148975911526}
@@ -25828,6 +25834,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be413376ce1572246be848360a6b6d8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1631423278}
+  cloneHolder: {fileID: 0}
   bartender: {fileID: 4959593123706638549}
   emptyMug: {fileID: 919132148646434588}
   fullMug: {fileID: 919132148975911526}
@@ -31644,7 +31652,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1898794105}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -42.4, y: 4.5, z: -24.300001}
+  m_LocalPosition: {x: -46, y: 4.5, z: -14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -35714,6 +35722,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d1bfe249990fdd4b98d41f5dcb7ef7d, type: 3}
+--- !u!1 &2143618524
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2143618525}
+  m_Layer: 0
+  m_Name: CloneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2143618525
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2143618524}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.92101, y: 8.73395, z: -43.125755}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2144181821
 GameObject:
   m_ObjectHideFlags: 0
@@ -36760,7 +36798,6 @@ GameObject:
   - component: {fileID: 543450653167848870}
   - component: {fileID: 919132148646434589}
   - component: {fileID: 919132148646434590}
-  - component: {fileID: 919132148646434591}
   m_Layer: 0
   m_Name: Beer empty
   m_TagString: Untagged
@@ -36797,21 +36834,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.120707355, y: 0.122472, z: 0.09714296}
   m_Center: {x: 0.0109051, y: 0.07412624, z: 0.003664839}
---- !u!114 &919132148646434591
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132148646434588}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d959264d9cee45409d3a6cefdf1386d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isFilled: 0
-  pointB: {fileID: 1898794109}
-  speed: 0.01
 --- !u!1 &919132148975911526
 GameObject:
   m_ObjectHideFlags: 0
@@ -36875,8 +36897,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFilled: 0
-  pointB: {fileID: 0}
-  speed: 0
+  target: {fileID: 1898794109}
+  speed: 0.01
 --- !u!4 &995044550314738404
 Transform:
   m_ObjectHideFlags: 0

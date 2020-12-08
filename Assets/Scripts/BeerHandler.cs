@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BeerHandler : MonoBehaviour
 {
     public bool isFilled;
 
-    public Transform pointB;
+    public Transform target;
     public float speed;
 
     void Start()
@@ -29,7 +27,10 @@ public class BeerHandler : MonoBehaviour
 
     public void Move()
     {
-        transform.position = Vector3.MoveTowards(transform.position, pointB.position, speed);
+        transform.position = new Vector3(transform.position.x, 5, transform.position.z);
+        var targetPos = new Vector3(target.position.x, 5, transform.position.z);
+
+        transform.position = Vector3.MoveTowards(transform.position, targetPos, speed);
     }
 
     private void OnTriggerEnter(Collider col)
@@ -38,7 +39,6 @@ public class BeerHandler : MonoBehaviour
         {
             Destroy(col.gameObject.transform.parent.gameObject);
             Destroy(this.gameObject);
-            Debug.Log("destroyed customer and beer");
         }
     }
 }

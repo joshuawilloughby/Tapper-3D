@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Xml.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SpawnCustomer : MonoBehaviour
 {
@@ -23,11 +20,6 @@ public class SpawnCustomer : MonoBehaviour
     {
         spawnDelay = Random.Range(lowerDelayBound, upperDelayBound);
         InvokeRepeating("Spawn", spawnTime, spawnDelay);
-    }
-
-    void Update()
-    {
-       
     }
 
     public void Spawn()
