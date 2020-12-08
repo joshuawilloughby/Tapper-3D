@@ -6,36 +6,35 @@ using UnityEngine;
 public class SpawnCustomer : MonoBehaviour
 {
     public GameObject customer;
-    public Transform target;
     public GameObject newCustomer;
     public Rigidbody newCustomerRig;
 
-    public float speed;
+    public bool spawned = false;
 
     public bool stopSpawning = false;
 
     public float spawnTime;
     public float spawnDelay;
 
-    public float lowerBoundSpeed;
-    public float upperBoundSpeed;
+    public float lowerDelayBound;
+    public float upperDelayBound;
+
     void Start()
     {
-        speed = Random.Range(lowerBoundSpeed, upperBoundSpeed);
+        spawnDelay = Random.Range(lowerDelayBound, upperDelayBound);
         InvokeRepeating("Spawn", spawnTime, spawnDelay);
     }
 
     void Update()
     {
-        newCustomer.transform.position = Vector3.MoveTowards(newCustomer.transform.position, target.position, speed);
+       
     }
 
     public void Spawn()
     {
+        spawned = true;
         newCustomer = Instantiate(customer, transform.position, customer.transform.rotation);
         newCustomerRig = newCustomer.GetComponent<Rigidbody>();
-
-        Debug.Log("Current Speed: " + speed);
 
         if (stopSpawning)
         {
