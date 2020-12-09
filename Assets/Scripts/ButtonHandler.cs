@@ -40,6 +40,7 @@ public class ButtonHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     {
         if (bartender.canServe)
         {
+            barTap.isCarryingMug = false;
             serveBeer = true;
             Debug.Log("serving");
         }

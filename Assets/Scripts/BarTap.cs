@@ -27,6 +27,8 @@ public class BarTap : MonoBehaviour
     public bool spawned;
     public bool fullMugSpawned;
 
+    public bool isCarryingMug;
+
     public ButtonHandler buttonHandler;
 
     void Start()
@@ -35,6 +37,7 @@ public class BarTap : MonoBehaviour
         fullMugSpawned = false;
         canPourBeer = false;
         canRemoveMug = false;
+        isCarryingMug = false;
     }
 
     void Update()
@@ -64,6 +67,8 @@ public class BarTap : MonoBehaviour
             Transform beerClone = cloneHolder.Find("Beer full(Clone)");
             Transform beerHolder = player.gameObject.transform.Find("MugHolder");
             beerClone.parent = beerHolder;
+            beerClone.position = beerHolder.position;
+            isCarryingMug = true;
         }
     }
 }

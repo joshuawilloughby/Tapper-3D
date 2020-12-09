@@ -5211,8 +5211,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be413376ce1572246be848360a6b6d8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1631423278}
-  cloneHolder: {fileID: 0}
+  player: {fileID: 4959593123706638548}
+  cloneHolder: {fileID: 2143618525}
   bartender: {fileID: 4959593123706638549}
   emptyMug: {fileID: 919132148646434588}
   fullMug: {fileID: 919132148975911526}
@@ -5226,6 +5226,7 @@ MonoBehaviour:
   canRemoveMug: 0
   spawned: 0
   fullMugSpawned: 0
+  isCarryingMug: 0
   buttonHandler: {fileID: 92188447}
 --- !u!65 &318766362
 BoxCollider:
@@ -10925,6 +10926,7 @@ MonoBehaviour:
   canRemoveMug: 0
   spawned: 0
   fullMugSpawned: 0
+  isCarryingMug: 0
   buttonHandler: {fileID: 92188447}
 --- !u!65 &653600157
 BoxCollider:
@@ -25194,8 +25196,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be413376ce1572246be848360a6b6d8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1631423278}
-  cloneHolder: {fileID: 0}
+  player: {fileID: 4959593123706638548}
+  cloneHolder: {fileID: 2143618525}
   bartender: {fileID: 4959593123706638549}
   emptyMug: {fileID: 919132148646434588}
   fullMug: {fileID: 919132148975911526}
@@ -25209,6 +25211,7 @@ MonoBehaviour:
   canRemoveMug: 0
   spawned: 0
   fullMugSpawned: 0
+  isCarryingMug: 0
   buttonHandler: {fileID: 92188447}
 --- !u!65 &1522764456
 BoxCollider:
@@ -25834,8 +25837,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be413376ce1572246be848360a6b6d8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1631423278}
-  cloneHolder: {fileID: 0}
+  player: {fileID: 4959593123706638548}
+  cloneHolder: {fileID: 2143618525}
   bartender: {fileID: 4959593123706638549}
   emptyMug: {fileID: 919132148646434588}
   fullMug: {fileID: 919132148975911526}
@@ -25849,6 +25852,7 @@ MonoBehaviour:
   canRemoveMug: 0
   spawned: 0
   fullMugSpawned: 0
+  isCarryingMug: 0
   buttonHandler: {fileID: 92188447}
 --- !u!65 &1557226067
 BoxCollider:
@@ -36848,7 +36852,7 @@ GameObject:
   - component: {fileID: 919132148975911527}
   - component: {fileID: 919132148975911528}
   - component: {fileID: 919132148975911529}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Beer full
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39389,6 +39393,7 @@ MonoBehaviour:
   moveJoystick: {fileID: 1726901667}
   serveButtonHandler: {fileID: 1432854074}
   pourButtonHandler: {fileID: 92188447}
+  barTap: {fileID: 653600156}
   canPour: 0
   canServe: 0
   currentKeg: {fileID: 0}

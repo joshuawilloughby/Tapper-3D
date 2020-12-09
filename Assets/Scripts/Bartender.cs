@@ -16,6 +16,8 @@ public class Bartender : MonoBehaviour
     public ButtonHandler serveButtonHandler;
     public ButtonHandler pourButtonHandler;
 
+    public BarTap barTap;
+
     public bool canPour;
     public bool canServe;
 
@@ -47,8 +49,9 @@ public class Bartender : MonoBehaviour
 
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.CompareTag("Keg"))
+        if (col.gameObject.CompareTag("Keg") && !barTap.isCarryingMug)
         {
+            barTap = col.gameObject.GetComponent<BarTap>();
             canPour = true;
             pourButtonHandler.pourButton.gameObject.SetActive(true);
             pourButtonHandler.pourButton.interactable = true;
