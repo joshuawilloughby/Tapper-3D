@@ -2,9 +2,10 @@
 
 public class SpawnCustomer : MonoBehaviour
 {
-    public GameObject customer;
     public GameObject newCustomer;
     public Rigidbody newCustomerRig;
+
+    public GameObject customer;
 
     public bool spawned = false;
 
@@ -16,10 +17,17 @@ public class SpawnCustomer : MonoBehaviour
     public float lowerDelayBound;
     public float upperDelayBound;
 
-    void Start()
+    public void Start()
     {
         spawnDelay = Random.Range(lowerDelayBound, upperDelayBound);
         InvokeRepeating("Spawn", spawnTime, spawnDelay);
+
+        GameObject customer = gameObject.transform.parent.parent.gameObject;
+    }
+
+    public void Update()
+    {
+        
     }
 
     public void Spawn()

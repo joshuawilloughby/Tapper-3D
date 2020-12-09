@@ -30,7 +30,7 @@ public class Customer : MonoBehaviour
         if (col.gameObject.CompareTag("CustomerDetector"))
         {
             Destroy(this.gameObject);
-            Debug.Log("loose a life");
+            //loose life
         }
     }
 }

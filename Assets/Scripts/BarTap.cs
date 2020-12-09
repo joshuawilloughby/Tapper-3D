@@ -74,8 +74,7 @@ public class BarTap : MonoBehaviour
             isCarryingMug = true;
 
             beerHandler = newFullBeerMug.GetComponent<BeerHandler>();
-
-            beerHandler.isFilled = false;
+            buttonHandler.isFilled = false;
 
             if (beerHandler.isDestroyed)
             {

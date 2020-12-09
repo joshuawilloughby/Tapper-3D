@@ -14,7 +14,7 @@ public class ButtonHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     public Button serveButton;
 
     public bool pourBeer;
-    public bool serveBeer;
+    public bool isFilled;
 
     private bool pointerDown;
     private float pointerDownTimer;
@@ -30,10 +30,10 @@ public class ButtonHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     void Start()
     {
         serveButton.interactable = false;
-        serveButton.gameObject.SetActive(false);
+        serveButton.gameObject.SetActive(true);
 
         pourButton.interactable = false;
-        pourButton.gameObject.SetActive(false);
+        pourButton.gameObject.SetActive(true);
     }
 
     public void Serve()
@@ -41,12 +41,12 @@ public class ButtonHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         if (bartender.canServe)
         {
             barTap.isCarryingMug = false;
-            serveBeer = true;
-
-            barTap.beerClone.parent = null;
 
             beer = barTap.beerClone.GetComponent<BeerHandler>();
+            beer.serveBeer = true;
 
+            barTap.beerClone.parent = null;
+            
             //Reset After each beer
             barTap.canPourBeer = false;
             barTap.canRemoveMug = false;
@@ -57,7 +57,7 @@ public class ButtonHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
         if (!bartender.canServe)
         {
-            serveBeer = false;
+            beer.serveBeer = false;
         }
     }
 
@@ -66,16 +66,18 @@ public class ButtonHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         if (bartender.canPour)
         {
             barTap.canRemoveMug = true;
-
         }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        pointerDown = true;
-        barTap = bartender.currentKeg.GetComponent<BarTap>();
-        barTap.canPourBeer = true;
-        pourBeer = true;
+        if (pourButton.interactable || serveButton.interactable)
+        {
+            pointerDown = true;
+            barTap = bartender.currentKeg.GetComponent<BarTap>();
+            barTap.canPourBeer = true;
+            pourBeer = true;
+        }
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -98,8 +100,6 @@ public class ButtonHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             }
             fillImage.fillAmount = pointerDownTimer / requiredHoldTime;
         }
-
-        Debug.Log("Serve Beer: " + serveBeer);
     }
 
     private void Reset()

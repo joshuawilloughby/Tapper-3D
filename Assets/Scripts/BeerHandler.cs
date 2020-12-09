@@ -4,36 +4,41 @@ public class BeerHandler : MonoBehaviour
 {
     public ButtonHandler buttonHandler;
 
-    public bool isFilled;
+    public ScoreSystem scoreSystem;
+
+    public bool serveBeer;
+
+    public bool alreadyserved;
 
     public bool isDestroyed;
 
     public Transform target;
     public float speed;
 
-    void Start()
+    public void Start()
     {
-        isFilled = false;
+        buttonHandler.isFilled = false;
+        alreadyserved = false;
     }
 
-    void Update()
+    public void Update()
     {
-        if (buttonHandler.serveBeer)
+        if (serveBeer)
         {
-            isFilled = true;
+            buttonHandler.isFilled = true;
         }
 
-        if (!buttonHandler.serveBeer)
+        if (!serveBeer)
         {
-            isFilled = false;
+            buttonHandler.isFilled = false;
         }
 
-        if (isFilled)
+        if (buttonHandler.isFilled)
         {
             Move();
         }
 
-        Debug.Log("Is filled: " + isFilled);
+        Debug.Log("Is filled: " + buttonHandler.isFilled);
     }
 
     public void Move()
@@ -48,6 +53,9 @@ public class BeerHandler : MonoBehaviour
     {
         if (col.gameObject.CompareTag("BeerDetector"))
         {
+            scoreSystem.score += 50;
+            scoreSystem.currentScore.text = "Score: " + scoreSystem.score;
+
             Destroy(col.gameObject.transform.parent.gameObject);
             Destroy(this.gameObject);
             isDestroyed = true;

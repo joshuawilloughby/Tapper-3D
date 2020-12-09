@@ -27,7 +27,7 @@ public class Bartender : MonoBehaviour
 
     #endregion
 
-    void Awake()
+    public void Awake()
     {
         rb = GetComponent<Rigidbody>();
         moveJoystick = GameObject.FindWithTag("Joystick").GetComponent<FixedJoystick>();
@@ -39,7 +39,7 @@ public class Bartender : MonoBehaviour
         canServe = false;
     }
 
-    void Update()
+    public void Update()
     {
         rb.velocity = new Vector3(moveJoystick.Horizontal * moveForce, rb.velocity.y, moveJoystick.Vertical * moveForce);
 
@@ -59,13 +59,6 @@ public class Bartender : MonoBehaviour
             pourButtonHandler.pourButton.interactable = true;
             currentKeg = col.gameObject;
         }
-
-        if (col.gameObject.CompareTag("Counter"))
-        {
-            canServe = true;
-            serveButtonHandler.serveButton.gameObject.SetActive(true);
-            serveButtonHandler.serveButton.interactable = true;
-        }
     }
 
     private void OnCollisionExit(Collision col)
@@ -73,16 +66,31 @@ public class Bartender : MonoBehaviour
         if (col.gameObject.CompareTag("Keg"))
         {
             canPour = false;
-            pourButtonHandler.pourButton.gameObject.SetActive(false);
             pourButtonHandler.pourButton.interactable = false;
         }
+    }
 
+    private void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.CompareTag("Counter"))
+        {
+            if (barTap.isCarryingMug)
+            {
+                canServe = true;
+                serveButtonHandler.serveButton.gameObject.SetActive(true);
+                serveButtonHandler.serveButton.interactable = true;
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider col)
+    {
         if (col.gameObject.CompareTag("Counter"))
         {
             canServe = false;
-            serveButtonHandler.serveButton.gameObject.SetActive(false);
             serveButtonHandler.serveButton.interactable = false;
+            barTap.isCarryingMug = false;
         }
     }
-    
+
 }
