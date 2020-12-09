@@ -89,7 +89,6 @@ public class Bartender : MonoBehaviour
         {
             canServe = false;
             serveButtonHandler.serveButton.interactable = false;
-            barTap.isCarryingMug = false;
         }
     }
 

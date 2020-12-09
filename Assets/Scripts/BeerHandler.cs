@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Security.Cryptography;
+using UnityEngine;
 
 public class BeerHandler : MonoBehaviour
 {
@@ -13,16 +14,27 @@ public class BeerHandler : MonoBehaviour
     public bool isDestroyed;
 
     public Transform target;
+    public Transform throwbackTarget;
     public float speed;
+
+    public int chanceToComeBack;
+
+    public bool isThrowBack;
 
     public void Start()
     {
         buttonHandler.isFilled = false;
         alreadyserved = false;
+        isThrowBack = false;
     }
 
     public void Update()
     {
+        if (isThrowBack)
+        {
+            serveBeer = false;
+        }
+
         if (serveBeer)
         {
             buttonHandler.isFilled = true;
@@ -33,18 +45,29 @@ public class BeerHandler : MonoBehaviour
             buttonHandler.isFilled = false;
         }
 
+        if (!serveBeer && isThrowBack)
+        {
+            throwBack();
+        }
+
         if (buttonHandler.isFilled)
         {
             Move();
         }
-
-        Debug.Log("Is filled: " + buttonHandler.isFilled);
     }
 
     public void Move()
     {
         transform.position = new Vector3(transform.position.x, 5, transform.position.z);
         var targetPos = new Vector3(target.position.x, 5, transform.position.z);
+
+        transform.position = Vector3.MoveTowards(transform.position, targetPos, speed);
+    }
+
+    public void throwBack()
+    {
+        transform.position = new Vector3(transform.position.x, 5, transform.position.z);
+        var targetPos = new Vector3(throwbackTarget.position.x, 5, transform.position.z);
 
         transform.position = Vector3.MoveTowards(transform.position, targetPos, speed);
     }
@@ -56,10 +79,19 @@ public class BeerHandler : MonoBehaviour
             scoreSystem.score += 50;
             scoreSystem.currentScore.text = "Score: " + scoreSystem.score;
 
-            Destroy(col.gameObject.transform.parent.gameObject);
-            Destroy(this.gameObject);
-            isDestroyed = true;
-            //get points
+            if (chanceToComeBack >= 20)
+            {
+                Destroy(col.gameObject.transform.parent.gameObject);
+
+                isThrowBack = true;
+            }
+
+            if (chanceToComeBack < 20)
+            {
+                Destroy(col.gameObject.transform.parent.gameObject);
+                Destroy(this.gameObject);
+                isDestroyed = true;
+            }
         }
 
         if (col.gameObject.CompareTag("DestroyDrink"))
@@ -67,6 +99,14 @@ public class BeerHandler : MonoBehaviour
             Destroy(this.gameObject);
             isDestroyed = true;
             //loose a life
+        }
+
+        if (col.gameObject.CompareTag("BrokenDrink") && isThrowBack)
+        {
+            Destroy(this.gameObject);
+            isDestroyed = true;
+            Debug.Log("drink broke so loose a life");
+            //lose a life
         }
     }
 }

@@ -76,6 +76,8 @@ public class BarTap : MonoBehaviour
             beerHandler = newFullBeerMug.GetComponent<BeerHandler>();
             buttonHandler.isFilled = false;
 
+            beerHandler.chanceToComeBack = Random.Range(1, 25);
+
             if (beerHandler.isDestroyed)
             {
                 beerHandler = null;
