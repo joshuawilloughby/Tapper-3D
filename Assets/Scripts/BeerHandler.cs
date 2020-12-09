@@ -2,6 +2,8 @@
 
 public class BeerHandler : MonoBehaviour
 {
+    public ButtonHandler buttonHandler;
+
     public bool isFilled;
 
     public Transform target;
@@ -19,6 +21,11 @@ public class BeerHandler : MonoBehaviour
 
     void Update()
     {
+        if (buttonHandler.serveBeer)
+        {
+            isFilled = true;
+        }
+
         if (isFilled)
         {
             Move();

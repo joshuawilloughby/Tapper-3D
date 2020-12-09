@@ -42,6 +42,10 @@ public class ButtonHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         {
             barTap.isCarryingMug = false;
             serveBeer = true;
+
+            barTap.beerClone.parent = null;
+            Debug.Log("set to null");
+
             Debug.Log("serving");
         }
     }

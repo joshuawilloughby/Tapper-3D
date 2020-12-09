@@ -20,6 +20,8 @@ public class BarTap : MonoBehaviour
     public GameObject newFullBeerMug;
     public Rigidbody newFullBeerMugRig;
 
+    public Transform beerClone;
+
     public bool canPourBeer;
 
     public bool canRemoveMug;
@@ -64,7 +66,7 @@ public class BarTap : MonoBehaviour
 
             fullMugSpawned = true;
 
-            Transform beerClone = cloneHolder.Find("Beer full(Clone)");
+            beerClone = cloneHolder.Find("Beer full(Clone)");
             Transform beerHolder = player.gameObject.transform.Find("MugHolder");
             beerClone.parent = beerHolder;
             beerClone.position = beerHolder.position;
