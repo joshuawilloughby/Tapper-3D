@@ -9,6 +9,7 @@ TagManager:
   - Counter
   - BeerDetector
   - CustomerDetector
+  - DestroyDrink
   layers:
   - Default
   - TransparentFX

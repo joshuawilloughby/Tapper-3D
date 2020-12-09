@@ -44,9 +44,20 @@ public class ButtonHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             serveBeer = true;
 
             barTap.beerClone.parent = null;
-            Debug.Log("set to null");
 
-            Debug.Log("serving");
+            beer = barTap.beerClone.GetComponent<BeerHandler>();
+
+            //Reset After each beer
+            barTap.canPourBeer = false;
+            barTap.canRemoveMug = false;
+            barTap.spawned = false;
+            barTap.fullMugSpawned = false;
+            barTap.isCarryingMug = false;
+        }
+
+        if (!bartender.canServe)
+        {
+            serveBeer = false;
         }
     }
 
@@ -72,7 +83,7 @@ public class ButtonHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         Reset();
     }
 
-    private void Update()
+    public void Update()
     {
         if (pointerDown)
         {
@@ -87,6 +98,8 @@ public class ButtonHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             }
             fillImage.fillAmount = pointerDownTimer / requiredHoldTime;
         }
+
+        Debug.Log("Serve Beer: " + serveBeer);
     }
 
     private void Reset()

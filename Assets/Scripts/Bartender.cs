@@ -58,7 +58,6 @@ public class Bartender : MonoBehaviour
             pourButtonHandler.pourButton.gameObject.SetActive(true);
             pourButtonHandler.pourButton.interactable = true;
             currentKeg = col.gameObject;
-           // beerHandler.isFilled = false;
         }
 
         if (col.gameObject.CompareTag("Counter"))

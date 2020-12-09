@@ -6,16 +6,13 @@ public class BeerHandler : MonoBehaviour
 
     public bool isFilled;
 
+    public bool isDestroyed;
+
     public Transform target;
     public float speed;
 
     void Start()
     {
-        if (!isFilled)
-        {
-            //empty glass
-        }
-
         isFilled = false;
     }
 
@@ -26,10 +23,17 @@ public class BeerHandler : MonoBehaviour
             isFilled = true;
         }
 
+        if (!buttonHandler.serveBeer)
+        {
+            isFilled = false;
+        }
+
         if (isFilled)
         {
             Move();
         }
+
+        Debug.Log("Is filled: " + isFilled);
     }
 
     public void Move()
@@ -46,6 +50,15 @@ public class BeerHandler : MonoBehaviour
         {
             Destroy(col.gameObject.transform.parent.gameObject);
             Destroy(this.gameObject);
+            isDestroyed = true;
+            //get points
+        }
+
+        if (col.gameObject.CompareTag("DestroyDrink"))
+        {
+            Destroy(this.gameObject);
+            isDestroyed = true;
+            //loose a life
         }
     }
 }

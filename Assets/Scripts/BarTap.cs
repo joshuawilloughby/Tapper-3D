@@ -32,6 +32,7 @@ public class BarTap : MonoBehaviour
     public bool isCarryingMug;
 
     public ButtonHandler buttonHandler;
+    public BeerHandler beerHandler;
 
     void Start()
     {
@@ -71,6 +72,15 @@ public class BarTap : MonoBehaviour
             beerClone.parent = beerHolder;
             beerClone.position = beerHolder.position;
             isCarryingMug = true;
+
+            beerHandler = newFullBeerMug.GetComponent<BeerHandler>();
+
+            beerHandler.isFilled = false;
+
+            if (beerHandler.isDestroyed)
+            {
+                beerHandler = null;
+            }
         }
     }
 }
