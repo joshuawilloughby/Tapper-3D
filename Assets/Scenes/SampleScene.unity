@@ -5288,6 +5288,7 @@ MonoBehaviour:
   newEmptyBeerMugRig: {fileID: 0}
   newFullBeerMug: {fileID: 0}
   newFullBeerMugRig: {fileID: 0}
+  beerClone: {fileID: 0}
   canPourBeer: 0
   canRemoveMug: 0
   spawned: 0
@@ -10979,6 +10980,7 @@ MonoBehaviour:
   newEmptyBeerMugRig: {fileID: 0}
   newFullBeerMug: {fileID: 0}
   newFullBeerMugRig: {fileID: 0}
+  beerClone: {fileID: 0}
   canPourBeer: 0
   canRemoveMug: 0
   spawned: 0
@@ -25247,6 +25249,7 @@ MonoBehaviour:
   newEmptyBeerMugRig: {fileID: 0}
   newFullBeerMug: {fileID: 0}
   newFullBeerMugRig: {fileID: 0}
+  beerClone: {fileID: 0}
   canPourBeer: 0
   canRemoveMug: 0
   spawned: 0
@@ -25888,6 +25891,7 @@ MonoBehaviour:
   newEmptyBeerMugRig: {fileID: 0}
   newFullBeerMug: {fileID: 0}
   newFullBeerMugRig: {fileID: 0}
+  beerClone: {fileID: 0}
   canPourBeer: 0
   canRemoveMug: 0
   spawned: 0
