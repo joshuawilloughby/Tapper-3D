@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class BeerHandler : MonoBehaviour
 {
+    public LivesSystem lives;
     public ButtonHandler buttonHandler;
 
     public ScoreSystem scoreSystem;
@@ -98,7 +99,7 @@ public class BeerHandler : MonoBehaviour
         {
             Destroy(this.gameObject);
             isDestroyed = true;
-            //loose a life
+            lives.currentLives = lives.currentLives - 1;
         }
 
         if (col.gameObject.CompareTag("BrokenDrink") && isThrowBack)
@@ -106,7 +107,7 @@ public class BeerHandler : MonoBehaviour
             Destroy(this.gameObject);
             isDestroyed = true;
             Debug.Log("drink broke so loose a life");
-            //lose a life
+            lives.currentLives = lives.currentLives - 1;
         }
     }
 }

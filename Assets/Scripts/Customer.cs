@@ -2,6 +2,7 @@
 
 public class Customer : MonoBehaviour
 {
+    public LivesSystem lives;
     public SpawnCustomer spawnCustomer;
 
     public Transform target;
@@ -30,7 +31,7 @@ public class Customer : MonoBehaviour
         if (col.gameObject.CompareTag("CustomerDetector"))
         {
             Destroy(this.gameObject);
-            //loose life
+            lives.currentLives = lives.currentLives - 1;
         }
     }
 }
