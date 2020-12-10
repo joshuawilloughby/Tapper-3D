@@ -22,7 +22,6 @@ public class LivesSystem : MonoBehaviour
         image3.enabled = true;
     }
 
-    
     void Update()
     {
         if (currentLives == 3)
@@ -54,6 +53,5 @@ public class LivesSystem : MonoBehaviour
 
             scene.isGameOver = true;
         }
-
     }
 }

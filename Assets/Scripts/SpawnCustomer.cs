@@ -2,6 +2,7 @@
 
 public class SpawnCustomer : MonoBehaviour
 {
+    public Customer customerScript;
     public GameObject newCustomer;
     public Rigidbody newCustomerRig;
 
@@ -27,7 +28,7 @@ public class SpawnCustomer : MonoBehaviour
 
     public void Update()
     {
-        
+       customerScript.chanceToTip = Random.Range(1, 5);
     }
 
     public void Spawn()

@@ -11,6 +11,8 @@ public class Customer : MonoBehaviour
     public float lowerBoundSpeed;
     public float upperBoundSpeed;
 
+    public int chanceToTip;
+
     void Start()
     {
         speed = Random.Range(lowerBoundSpeed, upperBoundSpeed);
