@@ -2,17 +2,6 @@
 
 public class Bartender : MonoBehaviour
 {
-    #region Joystick Variables
-
-    private Rigidbody rb;
-    public float moveForce = 10f;
-
-    public FixedJoystick moveJoystick;
-
-    #endregion
-
-    #region General Variables
-
     public ButtonHandler serveButtonHandler;
     public ButtonHandler pourButtonHandler;
 
@@ -25,53 +14,23 @@ public class Bartender : MonoBehaviour
 
     public GameObject currentKeg;
 
-    #endregion
-
-    public void Awake()
-    {
-        rb = GetComponent<Rigidbody>();
-        moveJoystick = GameObject.FindWithTag("Joystick").GetComponent<FixedJoystick>();
-    }
-
     public void Start()
     {
         canPour = false;
         canServe = false;
     }
 
-    public void Update()
+    private void OnTriggerEnter(Collider col)
     {
-        rb.velocity = new Vector3(moveJoystick.Horizontal * moveForce, rb.velocity.y, moveJoystick.Vertical * moveForce);
-
-        if (moveJoystick.Horizontal != 0f || moveJoystick.Vertical != 0f)
+        if (col.gameObject.CompareTag("PlayerDetector") && !barTap.isCarryingMug)
         {
-            transform.rotation = Quaternion.LookRotation(rb.velocity);
-        }
-    }
-
-    private void OnCollisionEnter(Collision col)
-    {
-        if (col.gameObject.CompareTag("Keg") && !barTap.isCarryingMug)
-        {
-            barTap = col.gameObject.GetComponent<BarTap>();
+            barTap = col.gameObject.transform.parent.gameObject.GetComponent<BarTap>();
             canPour = true;
             pourButtonHandler.pourButton.gameObject.SetActive(true);
             pourButtonHandler.pourButton.interactable = true;
-            currentKeg = col.gameObject;
+            currentKeg = col.gameObject.transform.parent.gameObject;
         }
-    }
 
-    private void OnCollisionExit(Collision col)
-    {
-        if (col.gameObject.CompareTag("Keg"))
-        {
-            canPour = false;
-            pourButtonHandler.pourButton.interactable = false;
-        }
-    }
-
-    private void OnTriggerEnter(Collider col)
-    {
         if (col.gameObject.CompareTag("Counter"))
         {
             if (barTap.isCarryingMug)
@@ -85,6 +44,12 @@ public class Bartender : MonoBehaviour
 
     private void OnTriggerExit(Collider col)
     {
+        if (col.gameObject.CompareTag("PlayerDetector"))
+        {
+            canPour = false;
+            pourButtonHandler.pourButton.interactable = false;
+        }
+
         if (col.gameObject.CompareTag("Counter"))
         {
             canServe = false;
