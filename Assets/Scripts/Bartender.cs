@@ -14,6 +14,10 @@ public class Bartender : MonoBehaviour
 
     public GameObject currentKeg;
 
+    public bool throwBackToExit;
+
+    public ScoreSystem score;
+
     public void Start()
     {
         canPour = false;
@@ -39,6 +43,18 @@ public class Bartender : MonoBehaviour
                 serveButtonHandler.serveButton.gameObject.SetActive(true);
                 serveButtonHandler.serveButton.interactable = true;
             }
+        }
+
+        if (col.gameObject.CompareTag("Glass"))
+        {
+            throwBackToExit = true;
+        }
+
+        if (col.gameObject.CompareTag("TipDetector"))
+        {
+            score.score += 50;
+            score.currentScore.text = "Score: " + score.score;
+            Destroy(col.gameObject.transform.parent.gameObject);
         }
     }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 public class BeerHandler : MonoBehaviour
 {
     public LivesSystem lives;
+    public Bartender bartender;
     public ButtonHandler buttonHandler;
 
     public ScoreSystem scoreSystem;
@@ -22,11 +23,16 @@ public class BeerHandler : MonoBehaviour
 
     public bool isThrowBack;
 
+    private GameObject throwBackObject;
+
     public void Start()
     {
         buttonHandler.isFilled = false;
         alreadyserved = false;
         isThrowBack = false;
+
+        throwBackObject = gameObject.transform.Find("throwBackDetector").gameObject;
+        throwBackObject.SetActive(false);
     }
 
     public void Update()
@@ -34,6 +40,8 @@ public class BeerHandler : MonoBehaviour
         if (isThrowBack)
         {
             serveBeer = false;
+           
+            throwBackObject.SetActive(true);
         }
 
         if (serveBeer)
@@ -55,6 +63,12 @@ public class BeerHandler : MonoBehaviour
         {
             Move();
         }
+
+        if(bartender.throwBackToExit)
+        {
+            isThrowBack = false;
+            Move();
+        }
     }
 
     public void Move()
@@ -72,6 +86,7 @@ public class BeerHandler : MonoBehaviour
 
         transform.position = Vector3.MoveTowards(transform.position, targetPos, speed);
     }
+
 
     private void OnTriggerEnter(Collider col)
     {

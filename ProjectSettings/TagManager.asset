@@ -12,6 +12,9 @@ TagManager:
   - DestroyDrink
   - BrokenDrink
   - PlayerDetector
+  - Glass
+  - Beer
+  - TipDetector
   layers:
   - Default
   - TransparentFX
@@ -24,8 +27,8 @@ TagManager:
   - Player
   - Customer
   - Mug
-  - 
-  - 
+  - Glass
+  - Detector
   - 
   - 
   - 

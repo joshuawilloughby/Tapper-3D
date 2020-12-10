@@ -13,9 +13,17 @@ public class Customer : MonoBehaviour
 
     public int chanceToTip;
 
+    public GameObject moneyLocation;
+    public GameObject money;
+
+    public GameObject newTip;
+
+    public bool alreadyTipped;
+
     void Start()
     {
         speed = Random.Range(lowerBoundSpeed, upperBoundSpeed);
+        alreadyTipped = false;
     }
 
     void Update()
@@ -25,6 +33,17 @@ public class Customer : MonoBehaviour
         if (spawnCustomer.spawned)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPos, speed);
+        }
+
+        if (chanceToTip >= 5 && !alreadyTipped)
+        {
+            newTip = Instantiate(money, moneyLocation.transform.position, moneyLocation.transform.rotation);
+            alreadyTipped = true;
+        }
+
+        if (alreadyTipped)
+        {
+            return;
         }
     }
 

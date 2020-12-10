@@ -26,16 +26,15 @@ public class SpawnCustomer : MonoBehaviour
         GameObject customer = gameObject.transform.parent.parent.gameObject;
     }
 
-    public void Update()
-    {
-       customerScript.chanceToTip = Random.Range(1, 5);
-    }
-
     public void Spawn()
     {
         spawned = true;
         newCustomer = Instantiate(customer, transform.position, customer.transform.rotation);
         newCustomerRig = newCustomer.GetComponent<Rigidbody>();
+
+        customerScript = newCustomer.transform.GetComponent<Customer>();
+
+        customerScript.chanceToTip = Random.Range(1, 10);
 
         if (stopSpawning)
         {

@@ -75,6 +75,7 @@ public class BarTap : MonoBehaviour
 
             beerHandler = newFullBeerMug.GetComponent<BeerHandler>();
             buttonHandler.isFilled = false;
+            bartender.throwBackToExit = false;
 
             beerHandler.chanceToComeBack = Random.Range(1, 25);
 
